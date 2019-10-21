@@ -1,5 +1,7 @@
 <template>
-  <div> -오와아앙  </div>
+  <div> 
+    <h1>-오와아앙  </h1>
+  </div>
 </template>
 
 <script>

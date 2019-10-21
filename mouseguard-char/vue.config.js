@@ -1,5 +1,5 @@
 module.exports = {
     publicPath: process.env.NODE_ENV === 'production'
-      ? '/mouseguard-char/'
+      ? '/mouseguard-char/mouseguard-char'
       : '/'
   }

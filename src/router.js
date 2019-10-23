@@ -13,7 +13,12 @@ const router = new Router({
     {
       path: '/main',
       component: () => import('./views/Main.vue')
-    }]
+    }, 
+    {
+      path: '/mouse', 
+      component: () => import('./views/maker/MouseMaker.vue')
+    }
+  ]
 })
 
 export default router

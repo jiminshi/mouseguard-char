@@ -1,12 +1,16 @@
 <template>
-  <div> 
-    <h1>-오와아앙  </h1>
-  </div>
+  <v-app>
+    <v-content>
+      <router-view></router-view>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-
 export default {
-  name: 'app'
-}
+  name: 'App',
+  data: () => ({
+    //
+  }),
+};
 </script>

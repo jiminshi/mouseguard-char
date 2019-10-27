@@ -16,19 +16,22 @@
                   v-tab step 4: 본능
                   v-tab step 5: 지식
                   v-tab step 6: 특성
+                  v-tab 완성
 
                   v-tab-item 
-                    Rank
+                    Rank(@rank='rank')
                   v-tab-item 
-                    Home
+                    Home(@home='home')
                   v-tab-item 
-                    Skills
+                    Skills(@skills='skills')
                   v-tab-item 
-                    Nature
+                    Nature(@nature='nature')
                   v-tab-item 
-                    Knowledge
+                    Knowledge(@knowledge='knowledge')
                   v-tab-item 
-                    Traits
+                    Traits(@traits='traits')
+                  v-tab-item 
+                    Complete(@complete='complete')
           v-col
             MouseStats
     v-card(flat)
@@ -39,18 +42,27 @@
 </template>
 
 <script>
-// import ranks from "@/constants/ranks.js";
 import Rank from "@/views/maker/steps/Rank.vue";
 import Home from "@/views/maker/steps/Home.vue";
 import Skills from "@/views/maker/steps/Skills.vue";
 import Nature from "@/views/maker/steps/Nature.vue";
 import Knowledge from "@/views/maker/steps/Knowledge.vue";
 import Traits from "@/views/maker/steps/Traits.vue";
+import Complete from "@/views/maker/steps/Complete.vue";
 import MouseStats from "@/views/maker/MouseStats.vue";
 
 export default {
   name: "mouse-maker-stepper",
-  components: { Rank, Home, Skills, Nature, Knowledge, Traits, MouseStats },
+  components: {
+    Rank,
+    Home,
+    Skills,
+    Nature,
+    Knowledge,
+    Traits,
+    Complete,
+    MouseStats
+  },
   mounted() {},
   data() {
     return {
@@ -68,6 +80,30 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    rank(rank) {
+      /* eslint-disable no-console */
+      console.log("rank emitted", rank);
+    },
+    home(item) {
+      console.log("home emitted", item);
+    },
+    skills(item) {
+      console.log("skills emitted", item);
+    },
+    nature(item) {
+      console.log("nature emitted", item);
+    },
+    knowledge(item) {
+      console.log("knowledge emitted", item);
+    },
+    traits(item) {
+      console.log("traits emitted", item);
+    },
+    complete(item) {
+      console.log("complete emitted", item);
+    }
   }
 };
 </script>

@@ -4,16 +4,10 @@ export default [
 		en    : 'tenderPaw',
 		kr    : '말랑발',
 		stats : {
-			abilities : {
-				will   : 2,
-				health : 6
-			},
-			skills    : {
-				pathFinder : 2,
-				scout      : 2
-			},
-			minAge    : 0,
-			maxAge    : 0
+			abilities : [ { ability: '의지', level: 2 }, { ability: '건강', level: 6 } ],
+			skills    : [ { skill: '길잡이', level: 2 }, { skill: '정찰대', level: 2 } ],
+			minAge    : 14,
+			maxAge    : 17
 		}
 	},
 	{
@@ -21,10 +15,16 @@ export default [
 		en    : 'guardmouse',
 		kr    : '정규대원',
 		stats : {
-			abilities : {},
-			skills    : {},
-			minAge    : 0,
-			maxAge    : 0
+			abilities : [ { ability: '의지', level: 3 }, { ability: '건강', level: 5 } ],
+			skills    : [
+				{ skill: '전사', level: 3 },
+				{ skill: '흥정꾼', level: 2 },
+				{ skill: '정찰대원', level: 2 },
+				{ skill: '길잡이', level: 3 },
+				{ skill: '모험가', level: 2 }
+			],
+			minAge    : 18,
+			maxAge    : 25
 		}
 	},
 	{
@@ -32,10 +32,19 @@ export default [
 		en    : 'patrolGuard',
 		kr    : '순찰대원',
 		stats : {
-			abilities : {},
-			skills    : {},
-			minAge    : 0,
-			maxAge    : 0
+			abilities : [ { ability: '의지', level: 4 }, { ability: '건강', level: 5 } ],
+			skills    : [
+				{ skill: '요리사', level: 2 },
+				{ skill: '전사', level: 3 },
+				{ skill: '사냥꾼', level: 3 },
+				{ skill: '정찰대원', level: 2 },
+				{ skill: '치료사', level: 2 },
+				{ skill: '길잡이', level: 2 },
+				{ skill: '모험가', level: 2 },
+				{ skill: '기상관측가', level: 2 }
+			],
+			minAge    : 21,
+			maxAge    : 50
 		}
 	},
 	{
@@ -43,21 +52,43 @@ export default [
 		en    : 'patrolLeader',
 		kr    : '순찰대장',
 		stats : {
-			abilities : {},
-			skills    : {},
-			minAge    : 0,
-			maxAge    : 0
+			abilities : [ { ability: '의지', level: 5 }, { ability: '건강', level: 4 } ],
+			skills    : [
+				{ skill: '전사', level: 3 },
+				{ skill: '사냥꾼', level: 3 },
+				{ skill: '교관', level: 2 },
+				{ skill: '동물학쥐', level: 2 },
+				{ skill: '설득가', level: 2 },
+				{ skill: '길잡이', level: 3 },
+				{ skill: '정찰대원', level: 2 },
+				{ skill: '모험가', level: 3 },
+				{ skill: '기상관측가', level: 2 }
+			],
+			minAge    : 21,
+			maxAge    : 60
 		}
 	},
 	{
-		value     : 4,
-		en        : 'guardCaptain',
-		kr        : '수호대장',
-		baseStats : {
-			abilities : {},
-			skills    : {},
-			minAge    : 0,
-			maxAge    : 0
+		value : 4,
+		en    : 'guardCaptain',
+		kr    : '수호대장',
+		stats : {
+			abilities : [ { ability: '의지', level: 6 }, { ability: '건강', level: 3 } ],
+			skills    : [
+				{ skill: '행정관', level: 3 },
+				{ skill: '전사', level: 3 },
+				{ skill: '치료사', level: 2 },
+				{ skill: '사냥꾼', level: 3 },
+				{ skill: '교관', level: 2 },
+				{ skill: '투사', level: 3 },
+				{ skill: '웅변가', level: 2 },
+				{ skill: '길잡이', level: 3 },
+				{ skill: '정찰대원', level: 3 },
+				{ skill: '모험가', level: 3 },
+				{ skill: '기상관측가', level: 3 }
+			],
+			minAge    : 41,
+			maxAge    : 60
 		}
 	}
 ];

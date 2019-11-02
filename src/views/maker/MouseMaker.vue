@@ -33,7 +33,7 @@
                   v-tab-item 
                     Complete(@complete='complete')
           v-col
-            MouseStats
+            MouseStats(:mStats='mouse.stats')
     v-card(flat)
        v-alert(dense border='top' colored-border color='blue')  
         v-icon mdi-twitter 
@@ -50,6 +50,8 @@ import Knowledge from "@/views/maker/steps/Knowledge.vue";
 import Traits from "@/views/maker/steps/Traits.vue";
 import Complete from "@/views/maker/steps/Complete.vue";
 import MouseStats from "@/views/maker/MouseStats.vue";
+import Calculator from "@/statCalculator.js";
+// import _ from "lodash";
 
 export default {
   name: "mouse-maker-stepper",
@@ -74,8 +76,14 @@ export default {
           age: null
         },
         stats: {
+          abilities: {
+            nature: 3,
+            will: 0,
+            health: 0,
+            resources: 0,
+            circles: 0
+          },
           skills: [],
-          abilities: [],
           traits: []
         }
       }
@@ -84,7 +92,17 @@ export default {
   methods: {
     rank(rank) {
       /* eslint-disable no-console */
-      console.log("rank emitted", rank);
+      // this.mouse.stats.abilities = rank.stats;
+      console.log("newval", rank.newRank);
+
+      if (rank.newRank === undefined) {
+        Calculator.subtract(this.mouse.stats, rank.oldRank.stats);
+      } else if (rank.oldRank === undefined) {
+        Calculator.add(this.mouse.stats, rank.newRank.stats);
+      } else {
+        Calculator.subtract(this.mouse.stats, rank.oldRank.stats);
+        Calculator.add(this.mouse.stats, rank.newRank.stats);
+      }
     },
     home(item) {
       console.log("home emitted", item);

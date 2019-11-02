@@ -75,12 +75,15 @@ export default {
   },
   watch: {
     selected: {
-      handler() {
+      handler(newVal, oldVal) {
+        /* eslint-disable no-console */
         this.selectedRank = this.ranks[this.selected];
-        this.$emit("rank", this.selectedRank);
+        this.$emit("rank", {
+          newRank: this.ranks[newVal],
+          oldRank: this.ranks[oldVal]
+        });
       }
     }
-  },
-  methods: {}
+  }
 };
 </script>

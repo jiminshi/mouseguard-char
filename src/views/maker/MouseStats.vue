@@ -13,23 +13,23 @@ v-container
                 v-col 
                   v-badge.mr-10.mb-10(right color='blue')
                     template(v-slot:badge)
-                      span {{mStats.abilities.nature}}
+                      span {{mStats.abilities.nature > 7 ? 7: mStats.abilities.nature}}
                     v-chip(outlined label) 본능
                   v-badge.mr-10.mb-10(right color='blue')
                     template(v-slot:badge)
-                      span {{mStats.abilities.will}}
+                      span {{mStats.abilities.will > 6 ? 6 : mStats.abilities.will }}
                     v-chip(outlined label) 의지
                   v-badge.mr-10.mb-10(right color='blue')
                     template(v-slot:badge)
-                      span {{mStats.abilities.health}}  
+                      span {{mStats.abilities.health > 6 ? 6 : mStats.abilities.health}}  
                     v-chip(outlined label) 건강
                   v-badge.mr-10.mb-10(right color='blue')
                     template(v-slot:badge)
-                      span {{mStats.abilities.resources}}  
+                      span {{mStats.abilities.resources > 10 ? 10 : mStats.abilities.resources}}  
                     v-chip(outlined label) 자원
                   v-badge.mr-10.mb-10(right color='blue')
                     template(v-slot:badge)
-                      span {{mStats.abilities.circles}}  
+                      span {{mStats.abilities.circles > 10 ? 10 : mStats.abilities.circles}}  
                     v-chip(outlined label) 인맥
           v-card.my-2(flat outlined)
             v-card-title.subtitle-1.font-weight-light 기술
@@ -44,7 +44,7 @@ v-container
                       :key='skill.skill'
                     )
                       template(v-slot:badge)
-                        span {{skill.level}}
+                        span {{skill.level > 6 ? 6 : skill.level}}
                       v-chip(outlined label) {{ skill.skill }}
           v-card.my-2(flat outlined)
             v-card-title.subtitle-1.font-weight-light 특성
@@ -59,7 +59,7 @@ v-container
                        :key='trait.trait'
                       )
                       template(v-slot:badge)
-                        span {{trait.level}}
+                        span {{trait.level > 3 ? 3: trait.level}}
                       v-chip(outlined label) {{ trait.trait }}
           v-card.my-2(flat outlined)
             v-card-title.subtitle-1.font-weight-light 지식
@@ -74,64 +74,20 @@ v-container
                        :key='knowledge.knowledge'
                       )
                       template(v-slot:badge)
-                        span {{knowledge.level}}
+                        span {{knowledge.level > 6 ? 6 : knowledge.level}}
                       v-chip(outlined label) {{ knowledge.knowledge }}
   </template>
 <script>
 export default {
   name: "mouse-stats",
   props: {
-    info: Object,
-    stats: Object
-  },
-  data() {
-    return {
-      mInfo: null,
-      mStats: null
-    };
+    mStats: Object
   },
   created() {
-    this.mInfo = {
-      name: null,
-      age: null,
-      home: null,
-      rank: null,
-      cloak: null,
-      belief: null,
-      instinct: null,
-
-      parents: null,
-      mentor: null,
-      senior: null,
-      friend: null,
-      enemy: null,
-      contacts: null
-    };
-    this.mStats = {
-      abilities: {
-        nature: 3,
-        will: 2,
-        health: 6,
-        resources: 2,
-        circles: 2
-      },
-      traits: [
-        { trait: "강인함", level: 3 },
-        { trait: "강인함2", level: 3 },
-        { trait: "강인함4", level: 3 },
-        { trait: "강인함5", level: 3 },
-        { trait: "강인함6", level: 3 },
-        { trait: "강인함7", level: 3 },
-        { trait: "강인함8", level: 3 }
-      ],
-      skills: [
-        { skill: "전사2", level: 4 },
-        { skill: "전사3", level: 4 },
-        { skill: "전사4", level: 4 },
-        { skill: "전사5", level: 4 }
-      ],
-      knowledge: [{ knowledge: "쥐-지식", level: 2 }]
-    };
+    //   traits: [{ trait: "강인함", level: 3 }],
+    //   skills: [{ skill: "전사2", level: 4 }],
+    //   knowledge: [{ knowledge: "쥐-지식", level: 2 }]
+    // };
   }
 };
 </script>

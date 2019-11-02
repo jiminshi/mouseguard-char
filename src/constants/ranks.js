@@ -4,7 +4,16 @@ export default [
 		en    : 'tenderPaw',
 		kr    : '말랑발',
 		stats : {
-			abilities : [ { ability: '의지', level: 2 }, { ability: '건강', level: 6 } ],
+			abilities : {
+				will   : {
+					ability : '의지',
+					level   : 2
+				},
+				health : {
+					ability : '건강',
+					level   : 6
+				}
+			},
 			skills    : [ { skill: '길잡이', level: 2 }, { skill: '정찰대', level: 2 } ],
 			minAge    : 14,
 			maxAge    : 17
@@ -15,7 +24,16 @@ export default [
 		en    : 'guardmouse',
 		kr    : '정규대원',
 		stats : {
-			abilities : [ { ability: '의지', level: 3 }, { ability: '건강', level: 5 } ],
+			abilities : {
+				will   : {
+					ability : '의지',
+					level   : 3
+				},
+				health : {
+					ability : '건강',
+					level   : 5
+				}
+			},
 			skills    : [
 				{ skill: '전사', level: 3 },
 				{ skill: '흥정꾼', level: 2 },
@@ -32,7 +50,16 @@ export default [
 		en    : 'patrolGuard',
 		kr    : '순찰대원',
 		stats : {
-			abilities : [ { ability: '의지', level: 4 }, { ability: '건강', level: 5 } ],
+			abilities : {
+				will   : {
+					ability : '의지',
+					level   : 4
+				},
+				health : {
+					ability : '건강',
+					level   : 5
+				}
+			},
 			skills    : [
 				{ skill: '요리사', level: 2 },
 				{ skill: '전사', level: 3 },
@@ -52,7 +79,16 @@ export default [
 		en    : 'patrolLeader',
 		kr    : '순찰대장',
 		stats : {
-			abilities : [ { ability: '의지', level: 5 }, { ability: '건강', level: 4 } ],
+			abilities : {
+				will   : {
+					ability : '의지',
+					level   : 5
+				},
+				health : {
+					ability : '건강',
+					level   : 4
+				}
+			},
 			skills    : [
 				{ skill: '전사', level: 3 },
 				{ skill: '사냥꾼', level: 3 },
@@ -73,7 +109,16 @@ export default [
 		en    : 'guardCaptain',
 		kr    : '수호대장',
 		stats : {
-			abilities : [ { ability: '의지', level: 6 }, { ability: '건강', level: 3 } ],
+			abilities : {
+				will   : {
+					ability : '의지',
+					level   : 6
+				},
+				health : {
+					ability : '건강',
+					level   : 3
+				}
+			},
 			skills    : [
 				{ skill: '행정관', level: 3 },
 				{ skill: '전사', level: 3 },

@@ -14,7 +14,7 @@ export default [
 					level   : 6
 				}
 			},
-			skills    : [ { skill: '길잡이', level: 2 }, { skill: '정찰대', level: 2 } ],
+			skills    : [ { skill: '길잡이', level: 2 }, { skill: '정찰대원', level: 2 } ],
 			minAge    : 14,
 			maxAge    : 17
 		}

@@ -23,7 +23,7 @@
                   v-tab-item 
                     Home(@home='home')
                   v-tab-item 
-                    Skills(@skills='skills')
+                    Skills(:rank='mouse.info.rank',@skill='skills')
                   v-tab-item 
                     Nature(@nature='nature')
                   v-tab-item 
@@ -91,21 +91,30 @@ export default {
   },
   methods: {
     rank(rank) {
+      this.mouse.info.rank = rank.newRank ? rank.newRank.kr : null;
       /* eslint-disable no-console */
       // this.mouse.stats.abilities = rank.stats;
-      console.log("newval", rank.newRank);
-
+      // console.log(Object.is(this.mouse.stats, rank.oldRank.stats));
       if (rank.newRank === undefined) {
         Calculator.subtract(this.mouse.stats, rank.oldRank.stats);
       } else if (rank.oldRank === undefined) {
         Calculator.add(this.mouse.stats, rank.newRank.stats);
       } else {
-        Calculator.subtract(this.mouse.stats, rank.oldRank.stats);
         Calculator.add(this.mouse.stats, rank.newRank.stats);
+        Calculator.subtract(this.mouse.stats, rank.oldRank.stats);
       }
     },
-    home(item) {
-      console.log("home emitted", item);
+    home(home) {
+      this.mouse.info.home = home.newHome.name;
+
+      if (home.newHome === undefined) {
+        Calculator.subtract(this.mouse.stats, home.oldHome.stats);
+      } else if (home.oldHome === undefined) {
+        Calculator.add(this.mouse.stats, home.newHome.stats);
+      } else {
+        Calculator.subtract(this.mouse.stats, home.oldHome.stats);
+        Calculator.add(this.mouse.stats, home.newHome.stats);
+      }
     },
     skills(item) {
       console.log("skills emitted", item);

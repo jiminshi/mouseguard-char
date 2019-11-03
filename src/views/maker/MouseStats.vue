@@ -43,9 +43,9 @@ v-container
                       color='orange' 
                       :key='skill.skill'
                     )
-                      template(v-slot:badge)
+                      template(v-if='skill.level>0' v-slot:badge)
                         span {{skill.level > 6 ? 6 : skill.level}}
-                      v-chip(outlined label) {{ skill.skill }}
+                      v-chip(outlined label v-if='skill.level > 0') {{ skill.skill }}
           v-card.my-2(flat outlined)
             v-card-title.subtitle-1.font-weight-light 특성
             v-card-subtitle.overline traits
@@ -58,9 +58,9 @@ v-container
                        color='orange' 
                        :key='trait.trait'
                       )
-                      template(v-slot:badge)
+                      template(v-if='trait.level > 0' v-slot:badge)
                         span {{trait.level > 3 ? 3: trait.level}}
-                      v-chip(outlined label) {{ trait.trait }}
+                      v-chip(outlined label v-if='trait.level > 0' ) {{ trait.trait }}
           v-card.my-2(flat outlined)
             v-card-title.subtitle-1.font-weight-light 지식
             v-card-subtitle.overline knowledge

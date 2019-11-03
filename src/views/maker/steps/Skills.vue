@@ -56,6 +56,7 @@
                   v-card-text
                     v-chip-group( 
                         column 
+                        multiple
                         v-model='s3Selected'
                         active-class='orange lighten-2 orange--text')
                       v-chip(
@@ -118,12 +119,65 @@
 <script>
 export default {
   name: "step-skill",
+  props: {
+    rank: String
+  },
+  watch: {
+    s1Selected: {
+      handler(newVal, oldVal) {
+        this.$emit("skill", {
+          newSkill: newVal,
+          oldSkill: oldVal
+        });
+      }
+    },
+    s2Selected: {
+      handler(newVal, oldVal) {
+        this.$emit("skill", {
+          newSkill: newVal,
+          oldSkill: oldVal
+        });
+      }
+    },
+    s3Selected: {
+      handler(newVal, oldVal) {
+        this.$emit("skill", {
+          newSkill: newVal,
+          oldSkill: oldVal
+        });
+      }
+    },
+    s4Selected: {
+      handler(newVal, oldVal) {
+        this.$emit("skill", {
+          newSkill: newVal,
+          oldSkill: oldVal
+        });
+      }
+    },
+    s5Selected: {
+      handler(newVal, oldVal) {
+        this.$emit("skill", {
+          newSkill: newVal,
+          oldSkill: oldVal
+        });
+      }
+    },
+    s6Selected: {
+      handler(newVal, oldVal) {
+        this.$emit("skill", {
+          newSkill: newVal,
+          oldSkill: oldVal
+        });
+      }
+    }
+  },
   data() {
     return {
       step: 0,
       s1Selected: [],
       s2Selected: null,
-      s3Selected: null,
+      s3Selected: [],
       s4Selected: null,
       s5Selected: null,
       s6Selected: null,

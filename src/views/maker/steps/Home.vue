@@ -24,16 +24,16 @@
                         v-card-subtitle 기술
                         v-card-text 
                           li(
-                            v-for='skill in home.skills' 
-                            :key='home.name+skill'
-                          ) {{ skill }}
+                            v-for='skill in home.stats.skills' 
+                            :key='home.name+skill.skill'
+                          ) {{ skill.skill }}
                       v-card.mx-1(flat)
                         v-card-subtitle 특성
                         v-card-text 
                           li(
-                            v-for='trait in home.traits' 
-                            :key='home.name+trait'
-                          ) {{ trait }}
+                            v-for='trait in home.stats.traits' 
+                            :key='home.name+trait.trait'
+                          ) {{ trait.trait }}
               v-slide-item(
                 v-slot:default='{active, toggle}'
               )
@@ -70,12 +70,15 @@ export default {
   },
   watch: {
     selected: {
-      handler() {
+      handler(newVal, oldVal) {
         this.selectedHome =
           this.selected >= this.homes.length
             ? this.createdHome
             : this.homes[this.selected];
-        this.$emit("home", this.selectedHome);
+        this.$emit("home", {
+          newHome: this.homes[newVal],
+          oldHome: this.homes[oldVal]
+        });
       }
     }
   }

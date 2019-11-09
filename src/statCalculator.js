@@ -18,7 +18,6 @@ export default {
 		for (let i in input.skills) {
 			for (let j in curr.skills) {
 				if (curr.skills[j].skill === input.skills[i].skill) {
-					// console.log(Object.is(curr.skills[j], input.skills[i]));
 					curr.skills[j].level -= input.skills[i].level;
 				}
 			}
@@ -53,6 +52,7 @@ export default {
 					curr.skills[j].level += input.skills[i].level;
 				}
 			}
+			console.log('contains: ', contains);
 			if (!contains) {
 				curr.skills.push(Object.assign({}, input.skills[i]));
 			}

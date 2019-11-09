@@ -95,6 +95,7 @@ export default {
       /* eslint-disable no-console */
       // this.mouse.stats.abilities = rank.stats;
       // console.log(Object.is(this.mouse.stats, rank.oldRank.stats));
+      console.log(rank.newRank);
       if (rank.newRank === undefined) {
         Calculator.subtract(this.mouse.stats, rank.oldRank.stats);
       } else if (rank.oldRank === undefined) {
@@ -105,7 +106,7 @@ export default {
       }
     },
     home(home) {
-      this.mouse.info.home = home.newHome.name;
+      this.mouse.info.home = home.newHome ? home.newHome.name : null;
 
       if (home.newHome === undefined) {
         Calculator.subtract(this.mouse.stats, home.oldHome.stats);
@@ -116,8 +117,16 @@ export default {
         Calculator.add(this.mouse.stats, home.newHome.stats);
       }
     },
-    skills(item) {
-      console.log("skills emitted", item);
+    skills(skill) {
+      if (skill.newSkill === undefined) {
+        Calculator.subtract(this.mouse.stats, { skills: skill.oldSkill });
+      } else if (skill.oldSkill === undefined) {
+        Calculator.add(this.mouse.stats, { skills: skill.newSkill });
+      } else {
+        Calculator.subtract(this.mouse.stats, { skills: skill.oldSkill });
+        Calculator.add(this.mouse.stats, { skills: skill.newSkill });
+      }
+      console.log("skills emitted", skill);
     },
     nature(item) {
       console.log("nature emitted", item);

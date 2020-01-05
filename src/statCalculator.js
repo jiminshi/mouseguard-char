@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default {
 	subtract(curr, input) {
 		/* eslint-disable no-console */
@@ -10,6 +12,8 @@ export default {
 		// resources: max 10
 		if (input.abilities)
 			Object.keys(input.abilities).forEach((e) => {
+				console.log('abilities', e, input.abilities[e].level);
+
 				if (input.abilities[e]) {
 					curr.abilities[e] -= input.abilities[e].level;
 				}
@@ -30,6 +34,7 @@ export default {
 				}
 			}
 		}
+		_.union(input.knowledges, curr.knowledges);
 	},
 
 	add(curr, input) {
@@ -37,7 +42,7 @@ export default {
 
 		if (input.abilities)
 			Object.keys(input.abilities).forEach((e) => {
-				// console.log(e, curr.abilities[e], input.abilities[e].level);
+				console.log('abilities', e, input.abilities[e]);
 				if (input.abilities[e]) {
 					curr.abilities[e] += input.abilities[e].level;
 				}
@@ -52,7 +57,6 @@ export default {
 					curr.skills[j].level += input.skills[i].level;
 				}
 			}
-			console.log('contains: ', contains);
 			if (!contains) {
 				curr.skills.push(Object.assign({}, input.skills[i]));
 			}

@@ -27,7 +27,7 @@
                   v-tab-item 
                     Nature(@nature='nature')
                   v-tab-item 
-                    Knowledge(@knowledge='knowledge')
+                    Knowledge(:rank='mouse.info.rank', @knowledge='knowledge')
                   v-tab-item 
                     Traits(@traits='traits')
                   v-tab-item 
@@ -84,7 +84,8 @@ export default {
             circles: 0
           },
           skills: [],
-          traits: []
+          traits: [],
+          knowledges: []
         }
       }
     };
@@ -94,8 +95,6 @@ export default {
       this.mouse.info.rank = rank.newRank ? rank.newRank.kr : null;
       /* eslint-disable no-console */
       // this.mouse.stats.abilities = rank.stats;
-      // console.log(Object.is(this.mouse.stats, rank.oldRank.stats));
-      console.log(rank.newRank);
       if (rank.newRank === undefined) {
         Calculator.subtract(this.mouse.stats, rank.oldRank.stats);
       } else if (rank.oldRank === undefined) {
@@ -126,10 +125,17 @@ export default {
         Calculator.subtract(this.mouse.stats, { skills: skill.oldSkill });
         Calculator.add(this.mouse.stats, { skills: skill.newSkill });
       }
-      console.log("skills emitted", skill);
     },
-    nature(item) {
-      console.log("nature emitted", item);
+    nature(nature) {
+      console.log(nature.newNature);
+      if (nature.newNature === undefined) {
+        Calculator.subtract(this.mouse.stats, nature.oldNature);
+      } else if (nature.oldNature === undefined) {
+        Calculator.add(this.mouse.stats, nature.newNature);
+      } else {
+        Calculator.subtract(this.mouse.stats, nature.oldNature);
+        Calculator.add(this.mouse.stats, nature.newNature);
+      }
     },
     knowledge(item) {
       console.log("knowledge emitted", item);

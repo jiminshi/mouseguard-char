@@ -20,11 +20,11 @@
             v-stepper-items
               v-stepper-content(step=1)
                 v-card(flat)
-                  v-card-subtitle.font-weight-light [TODO:CONDITION] 말랑발, 정규대원은 두가지를 골라주세요. 나머지는 하나를 골라주세요. 
+                  v-card-subtitle.font-weight-light 말랑발, 정규대원은 두가지를 고를수 있습니다. 나머지는 하나를 고를 수 있습니다. 
                   v-card-text
                     v-chip-group(
                         multiple 
-                        :max='getRank()'
+                        :max='getRankS1'
                         column 
                         v-model='s1Selected'
                         active-class='orange lighten-2 orange--text')
@@ -60,11 +60,12 @@
                     span [설득가] 상대 쥐에게 이유를 설명하며 당신을 돕게끔 하나요? 
                     br
                     br
-                    span [TODO:CONDITION] 순찰대장과 수호대장은 두개, 다른 계급은 하나를 고를 수 있습니다.
+                    span 순찰대장과 수호대장은 두개, 다른 계급은 하나를 고를 수 있습니다.
                   v-card-text
                     v-chip-group( 
                         column 
                         multiple
+                        :max='getRankS3'
                         v-model='s3Selected'
                         active-class='orange lighten-2 orange--text')
                       v-chip(
@@ -96,7 +97,7 @@
                     v-chip-group( 
                         column 
                         v-model='s5Selected'
-                        max=5
+                        :max='getRankS5'
                         multiple
                         active-class='orange lighten-2 orange--text')
                       v-chip(
@@ -138,7 +139,10 @@ export default {
     rank: String
   },
   methods: {
-    getRank() {
+    finish() {}
+  },
+  computed: {
+    getRankS1() {
       if (
         this.rank === "순찰대원" ||
         this.rank === "순찰대장" ||
@@ -147,7 +151,15 @@ export default {
         return 1;
       else return 2;
     },
-    finish() {}
+    getRankS3() {
+      if (this.rank === "순찰대장" || this.rank === "수호대장") return 2;
+      else return 1;
+    },
+
+    getRankS5() {
+      if (this.rank === "순찰대장") return 2;
+      else return 1;
+    }
   },
   watch: {
     rank: {
@@ -155,8 +167,6 @@ export default {
         // 컨디션 처리
         /* eslint-disable no-console */
         if (val === "말랑발") {
-          console.log(val);
-
           this.$emit("skill", {
             newSkill: [],
             oldSkill: this.skillS56[this.s6Selected]
@@ -164,30 +174,83 @@ export default {
               : []
           });
           this.s6Selected = null;
+
+          this.$emit("skill", {
+            newSkill: [],
+            oldSkill: this.skillS3[this.s3Selected]
+              ? [this.skillS3[this.s3Selected]]
+              : []
+          });
+          this.s3Selected = [];
+
+          this.$emit("skill", {
+            newSkill: [],
+            oldSkill: this.skillS56[this.s5Selected]
+              ? [this.skillS56[this.s5Selected]]
+              : []
+          });
+          this.s5Selected = [];
         }
         if (val === "정규대원") {
-          console.log(val);
+          this.$emit("skill", {
+            newSkill: [],
+            oldSkill: this.skillS3[this.s3Selected]
+              ? [this.skillS3[this.s3Selected]]
+              : []
+          });
+          this.s3Selected = [];
+
+          this.$emit("skill", {
+            newSkill: [],
+            oldSkill: this.skillS56[this.s5Selected]
+              ? [this.skillS56[this.s5Selected]]
+              : []
+          });
+          this.s5Selected = [];
         }
         if (val === "순찰대원") {
-          console.log(val);
           this.$emit("skill", {
             newSkill: [],
             oldSkill: this.s1Selected
           });
+          this.s1Selected = [];
+
+          this.$emit("skill", {
+            newSkill: [],
+            oldSkill: this.skillS3[this.s3Selected]
+              ? [this.skillS3[this.s3Selected]]
+              : []
+          });
+          this.s3Selected = [];
+
+          this.$emit("skill", {
+            newSkill: [],
+            oldSkill: this.skillS56[this.s5Selected]
+              ? [this.skillS56[this.s5Selected]]
+              : []
+          });
+          this.s5Selected = [];
         }
         if (val === "순찰대장") {
-          console.log(val);
           this.$emit("skill", {
             newSkill: [],
             oldSkill: this.s1Selected
           });
+          this.s1Selected = [];
         }
         if (val === "수호대장") {
-          console.log(val);
           this.$emit("skill", {
             newSkill: [],
             oldSkill: this.s1Selected
           });
+          this.s1Selected = [];
+          this.$emit("skill", {
+            newSkill: [],
+            oldSkill: this.skillS56[this.s5Selected]
+              ? [this.skillS56[this.s5Selected]]
+              : []
+          });
+          this.s5Selected = [];
         }
       }
     },

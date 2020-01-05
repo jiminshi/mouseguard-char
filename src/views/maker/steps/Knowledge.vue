@@ -14,7 +14,7 @@
             v-card-text 
               v-chip-group(
                 multiple 
-                max=4
+                :max='getRank'
                 v-model='selected'
                 column 
                 active-class='orange lighten-2 orange--text'
@@ -40,10 +40,42 @@
 <script>
 export default {
   name: "step-knowledge",
+  props: {
+    rank: String
+  },
+  watch: {
+    rank: {
+      handler(newVal, oldVal) {
+        /* eslint-disable no-console */
+        console.log("rank", newVal, oldVal);
+        if (oldVal) {
+          this.selected = [];
+        }
+      }
+    }
+  },
   methods: {
     addKnowledge(knowledge) {
       /* eslint-disable no-console */
       console.log(knowledge);
+    }
+  },
+  computed: {
+    getRank() {
+      switch (this.rank) {
+        case "말랑발":
+          return 0;
+        case "정규대원":
+          return 1;
+        case "순찰대원":
+          return 2;
+        case "순찰대장":
+          return 3;
+        case "수호대장":
+          return 4;
+        default:
+          return 1;
+      }
     }
   },
   data() {

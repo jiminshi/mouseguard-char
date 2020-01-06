@@ -92,7 +92,7 @@
                 v-card(flat)
                   v-card-subtitle.font-weight-light 당신의 스승은 마우스 가드로써 어떤 기술을 강조했나요? 
                     br
-                    span [TODO:CONDITION] 순찰대장은 두개를 골라주세요. 나머지 계급은 하나를 골라주세요.
+                    span 순찰대장은 두개를 골라주세요. 나머지 계급은 하나를 골라주세요.
                   v-card-text
                     v-chip-group( 
                         column 

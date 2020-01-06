@@ -5,8 +5,8 @@
         v-card-title.font-weight-light 지식
         v-card-text 
           v-card(flat)
-            v-card-subtitle.font-weight-light 
-              span [TODO:CONDITION] 말랑발은 '마우스가드의 규정-지식' 과 '마우스가드의 전설-지식' 중 하나를 고릅니다.
+            v-card-subtitle.font-weight-light
+              span 말랑발은 '마우스가드의 규정-지식' 과 '마우스가드의 전설-지식' 중 하나만을 고릅니다.
               br
               span 수호대장은 '록헤이븐-지식' 또는 '집정관-지식'을 꼭 골라야 합니다. 
               br
@@ -20,11 +20,26 @@
                 active-class='orange lighten-2 orange--text'
               )
                 v-chip(
-                  v-for='knowledge in knowledges'
+                  v-for='knowledge in getKnowledges'
                   :key='knowledge' 
                   outlined
                 ) {{ knowledge }}
+              v-chip-group(
+                v-if='rank==="수호대장"'
+                column 
+                active-class='orange lighten-2 orange--text'
+                @change='guardCaptainSelect'
+              )
+                v-chip(
+                  outlined
+                  :key='"록헤이븐-지식"'
+                ) 록헤이븐-지식
+                v-chip(
+                  outlined
+                  :key='"집정관-지식"'
+                ) 집정관-지식
               v-combobox(
+                v-if='rank !== "말랑발"'
                 v-model='additional'
                 label='없는 지식은 직접 만들어보세요'
                 chips
@@ -38,6 +53,8 @@
 
 </template>
 <script>
+import _ from "lodash";
+
 export default {
   name: "step-knowledge",
   props: {
@@ -57,14 +74,17 @@ export default {
   methods: {
     addKnowledge(knowledge) {
       /* eslint-disable no-console */
+      this.knowledges = _.union(this.knowledges, knowledge);
       console.log(knowledge);
+    },
+    guardCaptainSelect(t) {
+      console.log(this.guardCaptainKnowledges[t]);
     }
   },
   computed: {
     getRank() {
       switch (this.rank) {
         case "말랑발":
-          return 0;
         case "정규대원":
           return 1;
         case "순찰대원":
@@ -72,10 +92,14 @@ export default {
         case "순찰대장":
           return 3;
         case "수호대장":
-          return 4;
+          return 3;
         default:
           return 1;
       }
+    },
+    getKnowledges() {
+      if (this.rank === "말랑발") return this.tenderpawKnowledges;
+      else return this.knowledges;
     }
   },
   data() {
@@ -83,6 +107,8 @@ export default {
       step: null,
       selected: [],
       additional: null,
+      tenderpawKnowledges: ["마우스가드의 규정-지식", "마우스가드의 전설-지식"],
+      guardCaptainKnowledges: ["록헤이븐-지식", "집정관-지식"],
       knowledges: [
         "갈가마귀",
         "가뭄",
